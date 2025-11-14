@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            width: 700px;
+            height: 600px;
+            margin: auto;
+
+            display: flex;
+        }
+        .aside {
+            width: 100px;
+            height: 600px;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+
+        }
+        .animal {
+            width: 90px;
+            height: 60px;
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            cursor: pointer; 
+        }
+        .animal img {
+            width: 90px;
+            height: 60px;
+            object-fit: cover; 
+            border-radius: 5px; 
+        }
+        .content {
+            width: 600px;
+            height: 600px;
+            display: flex;
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center;
+
+        }
+        .animalPicture {
+            width: 550px;
+            height: 550px;
+
+        }
+    </style>
+    <script>
+        function showImage(animalName) {
+            const img = document.getElementById('mainImage');
+            
+            if (animalName === "bear") {
+                img.src = './images/geographic/bear.jpg';
+                img.alt = 'bear';
+            } else if (animalName === "cosmos") {
+                img.src = './images/geographic/cosmos.jpg'
+                img.alt = 'cosmos';
+            } else if (animalName === "diver") {
+                img.src = './images/geographic/diver.jpg'
+                img.alt = 'diver';
+            } else if (animalName === "fish") {
+                img.src = './images/geographic/fish.jpg'
+                img.alt = 'fish';
+            } else if (animalName === "fox") {
+                img.src = './images/geographic/fox.jpg'
+                img.alt = 'fox';
+            } else if (animalName === "lion") {
+                img.src = './images/geographic/lion.jpg'
+                img.alt = 'lion';
+            } else if (animalName === "mouse") {
+                img.src = './images/geographic/mouse.jpg'
+                img.alt = 'mouse';
+            } else if (animalName === "sunset") {
+                img.src = './images/geographic/sunset.jpg'
+                img.alt = 'sunset';
+            } else if (animalName === "turtle") {
+                img.src = './images/geographic/turtle.jpg'
+                img.alt = 'turtle';
+            } else {
+                img.src = './images/geographic/bear.jpg';
+                img.alt = 'bear';
+            }
+        }
+        window.onload = function() {
+            showImage('bear');
+        };
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="aside">
+            <div class="animal" onclick="showImage('bear')"><img src="./images/geographic/bear.jpg" alt="bear"></div>
+            <div class="animal" onclick="showImage('cosmos')"><img src="./images/geographic/cosmos.jpg" alt="cosmos"></div>
+            <div class="animal" onclick="showImage('diver')"><img src="./images/geographic/diver.jpg" alt="diver"></div>
+            <div class="animal" onclick="showImage('fish')"><img src="./images/geographic/fish.jpg" alt="fish"></div>
+            <div class="animal" onclick="showImage('fox')"><img src="./images/geographic/fox.jpg" alt="fox"></div>
+            <div class="animal" onclick="showImage('lion')"><img src="./images/geographic/lion.jpg" alt="lion"></div>
+            <div class="animal" onclick="showImage('mouse')"><img src="./images/geographic/mouse.jpg" alt="mouse"></div>
+            <div class="animal" onclick="showImage('sunset')"><img src="./images/geographic/sunset.jpg" alt="sunset"></div>
+            <div class="animal" onclick="showImage('turtle')"><img src="./images/geographic/turtle.jpg" alt="turtle"></div>
+        </div>
+        <div class="content">
+            <div class="animalPicture">
+                <img src="" alt="" id="mainImage" style="width: 100%; height: 100%;">           
+            </div>
+        </div>
+    </div>
+</body>
+</html>

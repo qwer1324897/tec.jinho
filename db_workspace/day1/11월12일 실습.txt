@@ -1,0 +1,34 @@
+[ 실습 ]
+- 이클립스를 사용하지 않고, 프로젝트 개발환경 구축하기 
+(1) c:/java_workspace 안에 project1 이라는 프로젝트 디렉토리를 만들기
+(2) project1 안에 src, bin 을 만들기 
+     src 는 자바 원본 소스가 위치할 디렉토리 
+     bin 은 컴파일된 결과인 .class 파일이 위치할 디렉토리 
+(3) 아래 두개의 클래스를 작성하여 컴파일한 후, 실행까지 성공해보기 
+   [ Apple.java 코드 ]
+    package  plant.fruit; 
+    public class Apple{
+          public String name="사과";
+    }
+
+   [ UseFruit.java 코드 ]   
+   package use; 
+   import  plant.fruit.Apple;
+   public class UseFruit{
+       public static void main(String[] args){
+            Apple apple = new Apple();
+            System.out.println(apple.name);
+       }        
+   }
+   
+   
+
+
+    
+
+
+
+
+
+
+

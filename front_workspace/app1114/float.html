@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+        이미지 뒤에 오는 텍스트들의 높이가 낮아서 이미지와 같은 수평선 상의 라인에 존재함에도 불구하고(정상적인 상황),
+        사용자들이 보기에는 이미지 우측에 여백이 있는 것 같은 부자연스러운 현상이 발생함.
+        따라서 이미지를 정상위치에서 벗어나게 해야 한다. 즉, 좌측 혹은 우측으로 float 시켜야 한다.
+        */
+        img {
+            float: left;
+        }
+        /*
+        block 요소는 float 요소를 인식할 수 없으므로, float 요소의 빈 자리에 침투한다.
+        inline 요소는 float 된 요소를 인식할 수 없으므로, float 요소의 빈자리를 침범하지 않는다.
+        주의) 텍스트도 인라인이다. html은 텍스트조차 요소로 간주된다. (모든 요소는 inline or block 원칙.)
+        */
+        #box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+
+</head>
+<body>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAk5Q_9EN4BBEOH0k3TsG3nv0lrvWhkpTXaA&s" alt=""> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam nesciunt officiis molestiae nemo,
+    <div id="box"></div>
+    hic accusantium nisi laudantium suscipit placeat, quos enim. Perspiciatis esse porro labore vitae architecto enim suscipit accusamus.
+    Sapiente hic, mollitia neque aspernatur provident itaque nihil non laborum harum quidem, tempora commodi! Aperiam, totam,
+    quia omnis voluptatem consequatur commodi, iste aliquid fugiat harum nisi itaque. Maiores, dolorem sint.
+    Ex saepe ad aut reprehenderit dolorem dolor corporis ut cum laboriosam? Autem inventore odit,
+    eius ratione laborum quidem aliquam mollitia necessitatibus laboriosam rerum esse omnis. Doloribus hic pariatur natus dolor!
+    Provident modi sed porro, sapiente quia earum minus corrupti ratione doloribus iste architecto consectetur consequuntur,
+    fuga nihil vel dolor iusto nobis unde quas perspiciatis? Natus, officia maxime. Iusto, distinctio. Tempora?
+    Recusandae voluptatum maiores nulla ex aperiam aliquam quis explicabo. Debitis, deserunt nam quisquam aliquam cumque,
+    at odit neque iusto culpa ex maiores natus dignissimos, quis rerum voluptate est dolorum vel.
+    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum, corrupti similique. Veritatis laudantium accusamus modi voluptatibus
+    unde veniam dolores enim consequatur corporis est tempora molestiae, possimus officiis saepe dolorum minus.
+    Nobis fugiat placeat nemo nisi repudiandae expedita magni sapiente quod reiciendis itaque sed facilis, rerum quis cumque tempore
+    corporis et repellat quaerat esse a voluptate consequatur saepe. Distinctio, assumenda modi.
+    Odio quae, molestiae iusto quo dolore ratione, magni libero et unde obcaecati aliquam quam reiciendis perspiciatis debitis,
+    a veniam fuga voluptate enim eos eligendi molestias ad deleniti? Velit, magni ut!
+</body>
+</html>

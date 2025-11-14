@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 500px;
+            height: 400px;
+            background-color: whitesmoke;
+            margin: auto; /* margint auto를 주면, 현재 요소의 좌,우 여백인 마진을 스스로 계산하여 중앙에 오게 함. */
+            position: relative; /* 자식에게 포지션이 명시되었으므로, 부모도 포지션이 명시되어야 한다. css가 지원하는 상대위치(relative)를 사용. */
+        }
+        img {
+            width: 100px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            /* 자식 요소에 포지션이 설정되면, 반드시 부모에게도 포지션이 명시되어야 한다. */
+        }
+    </style>
+    <script>
+        let move = 0;
+        let move2 = 0;
+        function moveRigth() {
+            let pic = document.getElementById("pic");
+            move += 15;
+            pic.style.left= move +"px";
+        }
+        function moveLeft() {
+            let pic = document.getElementById("pic");
+            move -= 15;
+            pic.style.left= move +"px";
+        }
+        function moveTop() {
+            let pic = document.getElementById("pic");
+            move2 -= 15;
+            pic.style.top= move2 +"px";            
+        }
+        function moveBottom() {
+            let pic = document.getElementById("pic");
+            move2 += 15;
+            pic.style.top= move2 +"px";            
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <img id="pic" src="https://story.agar.kr/files/member_extra_info/profile_image/954/348/002/2348954.jpg?t=1731994225" alt="">
+    </div>
+
+    <button onclick="moveTop()">위</button>
+    <br>
+    <button onclick="moveLeft()">왼쪽</button>
+    <button onclick="moveRigth()">오른쪽</button>
+    <br>
+    <button onclick="moveBottom()">아래</button>
+
+</body>
+</html>

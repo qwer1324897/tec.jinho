@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #div {
+            background-color: red;
+            width: 200px;
+            height: 200px;
+            border-radius: 5px;
+            transform: rotate(0deg);
+        }
+    </style>
+    <script>
+        // 자바에서는 함수가 객체 안에 소속되어 있기 때문에 해당 객체의 동작을 제어하는 용도이므로, 함수라고 부르지 않고 메서드라고 한다.
+        // 하지만 js에서는 어떠한 객체에도 포함되어 있지 않은 단독 함수 영역이므로, 그냥 사용자 정의 함수 라고 부른다.
+        let r = 0;  // 자바스크립트는 자료형이 없다. but TypeScript는 자료형을 지원함.
+        function roll() {
+            // 문서 내에 div라 불리는 태그 요소의 CSS중 transform: rotate() 값을 증가시켜보자.
+            r += 10;
+            // document.getElementById("div").style.transform="rotate("+ r +"deg)";
+            // 문자열 사이에 변수를 껴넣는 방식이 위처럼 복잡할 경우, 템플릿 문자열 ${} 을 사용할 수 있다.
+            document.getElementById("div").style.transform=`rotate(${r}deg)`;
+        }
+    </script>
+</head>
+<body>
+    <!-- dividion 의 약어로서, 화면을 분할하는 목적으로 지원되는 태그. 사용 빈도가 압도적이다. -->
+
+    <div id="div"></div>
+    <br>
+    <button onclick="roll()">회전</button>
+    <a href="javascript:roll()">돌리기</a>
+</body>
+</html>

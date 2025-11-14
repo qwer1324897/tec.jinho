@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 자주 사용될 수 있는 = 재사용 가능성이 높은 스타일은 클래스로 정의한다.
+        클래스 표시는 명칭 앞에 .을 붙이면 된다
+        하단의 스타일 시트에서 .btstyle(스타일의 적용 대상이 되는 주체)은 '선택자'라고 부른다.*/
+        .btstyle1 {
+            background-color: red;
+        }
+        .btstyle2 {
+            background-color: yellow;
+        }
+        /* 이렇게 짜면 하단의 코드를 일일이 수정하는게 아니라 여기 클래스만 수정하면 된다. */
+
+        input, select {
+            background-color: yellowgreen;
+        }
+
+        /* div의 후손들 중 h2인 요소에 대한 선택자(띄어쓰기) */
+        div h2 {
+            color: red;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <button class="btstyle1">버튼1</button>
+    <button class="btstyle1">버튼2</button>
+    <button class="btstyle1">버튼3</button>
+
+    <button class="btstyle2">버튼4</button>
+    <button class="btstyle2">버튼5</button>
+
+    <div>
+        <h1>제목</h1>
+        <p>
+            <h2>안쪽 제목</h2>
+        </p>
+    </div>
+
+    <input type="text">
+
+    <select name="" id="">
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+    </select>
+</body>
+</html>

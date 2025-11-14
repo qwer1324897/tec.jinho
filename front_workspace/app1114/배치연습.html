@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            display: flex;
+            width: 1000px; 
+            margin: auto;
+        }
+
+        .containerLeft {
+            width: 900px;
+            height: 500px;
+            margin: auto;
+        }
+        .box1, .box2 {
+            width: 450px;
+            height: 50px;
+            background-color: skyblue;
+            border: 1px solid black;
+            margin-top: -1px;
+        }
+        .box3 {
+            width: 225px;
+            height: 350px;
+            background-color: rgb(47, 192, 250);
+            border: 1px solid black;
+            margin-top: -1px;
+            margin-right: -1px;
+            margin-bottom: -1px;
+            float: left;
+        }
+        .box4 {
+            width: 224px;
+            height: 350px;
+            background-color: blue;
+            border: 1px solid black;
+            margin-top: -1px;
+            margin-right: -1px;
+            margin-bottom: -1px;
+            float: left;
+        }
+        .box5 {
+            width: 450px;
+            height: 50px;
+            background-color: skyblue;
+            border: 1px solid black;
+            margin-top: -1px; 
+            clear: both;           
+        }
+
+        .containerRight {
+            width: 452px;
+            margin: auto;
+        }
+        .layout3 {
+            display: flex;
+            width: 452px;
+            margin-top: -1px; 
+        }
+        .leftRight {
+            width: 225px;
+            display: flex;
+            flex-direction: column;
+        }
+        .boxa {
+            width: 450px;
+            height: 50px;
+            background-color: skyblue;
+            border: 1px solid black;
+            margin-top: -1px;
+        }
+        .boxb {
+            width: 225px;
+            height: 200px;
+            background-color: rgb(47, 192, 250);
+            border: 1px solid black;
+            margin-right: -1px;
+            margin-bottom: -1px;
+        }
+        .boxc {
+            width: 225px;
+            height: 200px;
+            background-color: blue;
+            border: 1px solid black;
+            margin-top: -1px;
+            margin-right: -1px;
+
+        }
+        .boxd {
+            width: 227px;
+            height: 400px; 
+            background-color: greenyellow;
+            border: 1px solid black;
+            margin-top: 0; 
+            margin-left: -1px; 
+        }
+        .boxe {
+            width: 450px;
+            height: 50px;
+            background-color: skyblue;
+            border: 1px solid black;
+            margin-top: -1px;            
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="containerLeft">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+            <div class="box4"></div>
+            <div class="box5"></div>
+        </div>
+        <div class="containerRight">
+            <div class="boxa"></div>
+            <div class="layout3">
+                <div class="leftRight">
+                    <div class="boxb"></div>
+                    <div class="boxc"></div>
+                </div>
+                <div class="boxd"></div>
+            </div>
+            <div class="boxe"></div>
+        </div>
+    </div>
+</body>
+</html>

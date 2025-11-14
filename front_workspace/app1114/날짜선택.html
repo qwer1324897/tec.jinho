@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        select {
+            width: 200px;
+            height: 60px;
+            border: 2px solid skyblue;
+            background-color: aliceblue;
+            color: black;
+            font-weight: bold;
+        }
+    </style>
+
+    
+</head>
+<body>
+    <select id="yy"></select>년
+    <select id="mm"></select>월
+    <select id="dd"></select>일
+
+    <script src="./lib/util.js"></script>
+    <script>
+        // 문서가 실행되면, yy의 자식으로 option 택을 동적으로 생성하여 부탁해보자.
+        let yy = document.getElementById("yy");
+        // yy.style.background="yellow";
+
+        for(let i=2025 ; i>=1945 ; i--) {
+            // 어떤 요소를 body 택에 직접 적지 말고, 프로그래밍으로 동적으로 생성하자.
+            let op = document.createElement("option");   // <option></option> 을 작성한 것과 동일.
+            op.text=i;   // <option>2025</option> 을 작성한 것과 동일.
+            yy.add(op);    // select 박스에 option 을 추가한 효과를 낸다.
+        }
+  
+        let mm = document.getElementById("mm");
+
+        for(let i=1 ; i<=12 ; i++) {
+            let op = document.createElement("option");
+            op.text=getZeroIfNumIfSmallThanTen(i); 
+            mm.add(op); 
+        }
+
+        let dd = document.getElementById("dd");
+
+        for(let i=1 ; i<=31 ; i++) {
+            let op = document.createElement("option");  
+            op.text=getZeroIfNumIfSmallThanTen(i);  
+            dd.add(op);  
+        }
+        
+    </script>
+
+</body>
+</html>

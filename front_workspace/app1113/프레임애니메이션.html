@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let n = 0;
+        function next() {
+            n += 1;
+            if (n==19) {n=1};
+            // 문서 내의 pic 이라는 아이디를 갖는 요소의 src=""안의 이미지 경로 값을 변경해보자.
+            let pic = document.getElementById("pic");
+            pic.src=`./images/hero/image${n}.png`;
+        }
+        // 자동이란, 이미 존재하는 수동 코드를 컴퓨터에게 맡기는 것이다.
+        function auto() {
+            // 자바스크립트 언어로 하여금, 지정된 가격으로 지속적으로 next() 함수를 호출하게 하면 된다.
+            setInterval("next()", 1);
+        }
+    </script>
+</head>
+<body>
+    <p>
+        <button onclick="next()">수동</button>
+        <button onclick="auto()">자동</button>
+    </p>
+    <p>
+    <img src="./images/hero/image1.png" id="pic">
+    </p>
+</body>
+</html>

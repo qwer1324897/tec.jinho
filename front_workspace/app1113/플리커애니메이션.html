@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 800px;
+            height: 800px;
+            background-color: black;
+        }
+    </style>
+    <script>
+
+    let blackAndWhite = false;
+
+    function onoff() {
+
+        blackAndWhite = !blackAndWhite; 
+        let newColor;
+
+        if (blackAndWhite) { 
+            newColor = "#000000"; 
+        } else {
+            newColor = "#FFFFFF";
+        }
+        document.getElementById("box").style.backgroundColor = newColor;
+    }
+    </script>
+</head>
+<body>
+    <button onclick="onoff()">스위치</button>
+    <br>
+    <div id="box"> </div>
+
+    
+</body>
+</html>

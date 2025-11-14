@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #span1 {
+            background-color: aqua; /* 백그라운드는 먹지만 */
+            width: 200px;
+            height: 200px;  /* 높이, 너비등은 먹지 않는다 */
+            /* 따라서 span과 같은 inline 속성을 갖는 태그는, 웹사이트의 레이아웃에 사용되지 않는다. */
+        }
+        #span2 {
+            background-color: yellowgreen;
+            width: 200px;
+            height: 200px;
+            display: inline-block;
+            /* 그러나 display를 쓰면, 인라인의 속성은 유지하되, block이 갖는 너비 높이등이 적용될수 있는 하이브리드한 속성을 지원한다. */
+        }
+    </style>
+</head>
+<body>
+    <!--
+    span 태그는 아무런 효과를 발생시키지 않는다. 목적은 그냥 마크업이다.
+    span은 대표적인 inline이다
+    inline은 너비, 높이, 패딩, 마진이 적용 불가능하다.
+    -->
+    <span id="span1">나여 스팬1</span>
+    <span id="span2">나여 스팬2</span>
+</body>
+</html>

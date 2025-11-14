@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 가로 세로 100, color blue */
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            /*
+            절대위치로 지정.
+            절대위치는 부모를 기준으로 한 위치 속성이다.
+            현재 문서에서 box1의 부모는 <body>이다.
+             */
+            position: absolute;
+            left: 100px; /* 부모를 기준으로 x축 방향으로 100에 위치. */
+            top: 200px; /* 부모를 기준으로 y축 방향으로 200에 위치. */
+        }
+
+    </style>
+</head>
+<body>
+    <div id="box1">나여 박스1</div>
+</body>
+</html>

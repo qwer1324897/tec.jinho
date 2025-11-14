@@ -1,0 +1,117 @@
+<!-- 
+1. CSS란 - HTML 문서의 디자인적 한계를 해결하기 위한 기술
+
+2. 적용방법 (3가지)
+    1) 인라인 CSS - 적용 대상이 되는 태그에 직접 작성하는 방식. style="" 적용 대상이 다수일 때는 코드 중복이 발생
+
+    2) 임베디드 방식 - <style> 태그로 원하는 디자인을 정의하는 방식
+
+    3) 링크 방식 - 여러 파일에 동일한 스타일을 적용할 수 있다.(재사용성이 높다)
+    
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<body>
+    <table border="7" width="600px" align="center">
+        <tr>
+            <td colspan="2" align="center" style="font-size: 20px;">
+                <b>회원가입</b>
+            </td>
+        </tr>
+        <tr>
+            <td >
+                &nbsp; &nbsp;ID
+            </td>
+            <td>
+                <input type="text" placeholder="아이디를 입력하세요" maxlength="20" size="20">
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp;PW
+            </td>
+            <td>
+                <input type="password" placeholder="비밀번호를 입력하세요" maxlength="20" size="20">
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp;Name
+            </td>
+            <td>
+                <input type="text" placeholder="이름을 입력하세요" maxlength="8" size="12">
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp;이메일
+            </td>
+            <td>
+                <input type="text" placeholder="email" maxlength="20" size="10 ">
+                @
+                <select>
+                    <option value="">도메인 선택</option>
+                    <option value="google.com">google.com</option>
+                    <option value="naver.com">naver.com</option>
+                    <option value="daum.com">daum.com</option>
+                    <option value="direct">직접입력</option>
+                </select>
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp;보유 기술
+            </td>
+            <td>
+                <input type="checkbox" id="JAVA" name="JAVA" value="JAVA" >
+                <label for="JAVA"> Java</label>
+                <input type="checkbox" id="Spring" name="Spring" value="Spring" >
+                <label for="Spring"> Spring</label>
+                <input type="checkbox" id="DB" name="DB" value="DB" >
+                <label for="DB"> DB</label>
+                <input type="checkbox" id="FronEnd" name="FronEnd" value="FronEnd" >
+                <label for="FronEnd"> FronEnd</label>
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                &nbsp; &nbsp;경력 사항
+            </td>
+            <td>
+                <!-- area 사이에는 엔터 같은 공백을 적용하면 안 된다. -->
+                <textarea name="user_comment" rows="10" cols="58"></textarea>
+            </td>            
+        </tr>
+        <tr>
+            <td>
+                &nbsp;&nbsp;개인정보 수신 동의
+            </td>
+            <td >
+                <!-- 아래의 두 radio 컴포넌트에 대해 하나만 선택하게 하려면 메모리에 올라갈 때 배열화 시켜야 한다. -->
+                <input type="radio" id="private" name="private" value="agree" checked>
+                <label for="private"> 동의 &ensp; &ensp; &ensp; &ensp; &ensp; &ensp; </label>
+                <input type="radio" id="private" name="private" value="disagree" >
+                <label for="private"> 미동의</label>
+            </td>            
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button type="button" onclick="alert('등록되었습니다!')">등록
+                </button>
+                <button type="button" onclick="alert('로그인되었습니다!')">로그인
+                </button>
+            </td>
+
+        </tr>        
+    </table>
+</body>
+</html>
