@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{margin: 0%;}  /* html에 기본적용된 마진을 없앨 수 있다.*/
+
+        /* div에 이미지를 배경으로 넣어보자
+           배경은 백그라운드에 적용되기 때문에, 이미지간 충돌을 발생시키지 않는다. 또, 특별한 옵션을 부여하지 않으면,
+           디폴트가 패턴 반복이다.(like 벽지)   
+        */
+        .container {
+            background-image: url(./images/shooting/bg.jpg);
+            width: 100%;
+            height: 576px;
+        }
+        #pic {
+            width: 85px;
+            height: 65px;
+            position: absolute; /* 바깥쪽의 부모 요소를 기준으로 위치를 지정할 수 있는 속성이다.*/
+            left: 100px;
+            top: 150px;
+        }
+    </style>
+    <script>
+        let x = 100;
+        let y = 150;
+        let speed = 20;
+        let bgX = 0; // 배경의 x축 위치를 결정할 전역변수
+        
+
+        // 우측 이동
+        function moveRight() {
+            // 문서 내의 pic 이라는 아이디를 갖는 요소의 position에서 left값을 증가시키면 된다.
+            x += speed;
+            document.getElementById("pic").style.left=x+"px"  
+        }// 좌측 이동
+        function moveLeft() {
+            x -= speed;
+            document.getElementById("pic").style.left=x+"px"  
+        }// 위로 이동
+        function moveUp() {
+            y -= speed;
+            document.getElementById("pic").style.top=y+"px"  
+        }// 아래로 이동
+        function moveDown() {
+            y += speed;
+            document.getElementById("pic").style.top=y+"px"  
+        }
+        // 배경효과
+        function bgEffect() {
+            bgX-=4;
+            document.querySelector(".container").style.backgroundPosition=`${bgX}px 0px`;
+        }
+
+        // 키보드 누를 때 호출되는 함수 
+        function control() {
+            // 위 아래 좌 우 방향키에만 반응을 보여야 함
+            // js에 내장된 객체 중 event 객체는, 브라우저 사용자가 사용한 향위에 대한 모든 정보를 포함하고 있음,
+
+            console.log("사용자가 누른 키에 대한 아스키 값은 ", event.keyCode);
+
+            if(event.keyCode===37) {
+                moveLeft()
+            } else if (event.keyCode===38) {
+                moveUp()
+            } else if (event.keyCode===39) {
+                moveRight()
+            } else if (event.keyCode===40) {
+                moveDown()
+            }
+
+        }
+    </script>
+</head>
+<body onkeydown="control()" onload="setInterval('bgEffect()', 10)">
+
+    <div class="container">
+        <img src="./images/shooting/plane.png" alt="" id="pic">
+    </div>
+</body>
+</html>

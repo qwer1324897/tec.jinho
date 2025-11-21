@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 600px;
+            height: 550px;
+            margin: auto;
+            background-color: aliceblue;
+        }
+        .header {
+            width: 600px;
+            height: 50px;
+            margin: auto;
+            text-align: center;
+            line-height: 50px;
+        }
+        .aside {
+            width: 100px;
+            height: 500px;
+            float: left;
+        }
+        .asideImg img{
+            width: 90px;
+            height: 55.6px;
+            margin: auto;
+            display: block;
+            background-color: aquamarine;
+        }
+        .content {
+            width: 500px;
+            height: 500px;  
+            float: right;
+        }
+        .contentImg img{
+            width: 480px;
+            height: 500px;
+            margin: auto;
+            display: block;
+            background-color: beige;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <button onclick="prevImage()">이전</button><button onclick="nextImage()">다음</button>
+        </div>
+        <div class="aside">
+            <div class="asideImg">
+                <img src= ./images/geographic/bear.jpg onmouseover="setImg('bear')"></img>
+                <img src= ./images/geographic/diver.jpg onmouseover="setImg('diver')"></img>
+                <img src= ./images/geographic/cosmos.jpg onmouseover="setImg('cosmos')"></img>
+                <img src= ./images/geographic/fox.jpg onmouseover="setImg('fox')"></img>
+                <img src= ./images/geographic/fish.jpg onmouseover="setImg('fish')"></img>
+                <img src= ./images/geographic/mouse.jpg onmouseover="setImg('mouse')"></img>
+                <img src= ./images/geographic/lion.jpg onmouseover="setImg('lion')"></img>
+                <img src= ./images/geographic/turtle.jpg onmouseover="setImg('turtle')"></img>
+                <img src= ./images/geographic/sunset.jpg onmouseover="setImg('sunset')"></img>
+            </div>
+        </div>
+        <div class="content">
+            <div class="contentImg">
+                <img>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const imageNames = ['bear', 'diver', 'cosmos', 'fox', 'fish', 'mouse', 'lion', 'turtle', 'sunset'];
+        let currentIndex = 0; 
+
+        function updateImage() {
+            const contentImg = document.querySelector(".content img");
+            const currentName = imageNames[currentIndex];
+            contentImg.src = `./images/geographic/${currentName}.jpg`;
+        }
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % imageNames.length;
+            updateImage();
+        }
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + imageNames.length) % imageNames.length;
+            updateImage();
+        }
+        function setImg(imagename) {
+            const newIndex = imageNames.indexOf(imagename);
+            if (newIndex !== -1) {
+                currentIndex = newIndex;
+                updateImage();
+            }
+        }
+        document.addEventListener('DOMContentLoaded', updateImage);
+    </script>
+</body>
+</html>

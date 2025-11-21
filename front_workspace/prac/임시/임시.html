@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=button] {
+  background-color: #04AA6D;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+<script>
+    function send() {
+        let form1 = document.getElementById("form1");
+        form1.method="post";    // 서버에 데이터를 보내기 위한 HTTP 전송 방법 중 하나
+        form1.action="";    // 폼 양식을 전송할 요청 주소(서블릿 매핑 주소를 넣을 예정)
+        form1.submit();     // 전송이 일어나는 시점
+    }
+
+	/* HTML 태그 요소에 지금까지 작성해왔던 이벤트 핸들러를, js 프로그래밍 언어로 작성해보자 */
+
+    // bt_send 는 자바스크립트보다 아래쪽에 위치하므로, 함수로 만들어서 원하는 시점에 호출해서 사용한다.
+	function init() {
+        document.getElementById("bt_send");
+        bt_send.addEventListener("click", function(){
+            alert("나 누름?");  // 이 코드는 하단 html에서 <button onClick=""> 코드와 같다. js로도 표현한 것.
+        })  // 장점은 아래 HTML에서 디자인을 바꿔도 기능에는 지장이 없다는 점.
+    }
+
+    window.addEventListener("load", function(){
+        alert("문서를 로드하였음")
+    }); // 이 코드는 <body onload="function(){}"> 을 아래 html에 구현한 것과 같다.
+        // 이런식으로 script에 js로 표현할 수도 있다.
+
+</script>
+</head>
+<body>
+
+<h3>Contact Form</h3>
+
+<div class="container">
+
+  <form id="form1">
+    <label for="fname">ID</label>
+    <input type="text" id="fname" name="firstname" placeholder="Your name..">
+
+    <label for="lname">Password</label>
+    <input type="password" id="lname" name="lastname" placeholder="Your last name..">
+    
+    <label for="lname">Name</label>
+    <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    <!-- type이 submit일 경우 form 태그로 감싼 모든 내용을 무조건 전송하기 때문에
+        일반버튼으로 전환한다. 전환하면 전송 능력이 사라진다.
+    -->
+    <input type="button" value="Submit" id="bt_send">
+  </form>
+</div>
+
+</body>
+</html>

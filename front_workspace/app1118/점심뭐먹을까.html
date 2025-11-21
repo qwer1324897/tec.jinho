@@ -1,0 +1,21 @@
+<script>
+    // js에서 배열은 이미 내장되어 있는 객체이다.
+    // 이러한 객체들을 가리켜 (built-in Object)라고 한다.
+    let food = new Array(); // 생성자 호출에 의한 배열 생성. js에서 배열은 크기를 알아서 늘려준다. like java의 List
+    let skill = ["java","oracle","spring"]; // 이렇게 바로 쓸 수 도 있다. 둘 다 가능.
+    food[0] = "중식";
+    food[1] = "일식";
+    food[2] = "한식";
+    food[3] = "양식";
+
+    let r = Math.random();  // 0에서 1보다 작은 수 사이의 무한한 난수를 생성.
+    
+    // 난수는 1에 도달하지 못하므로, n을 곱했을 때, 최대값이 n보다 작다.
+    // ex) 난수(1보다 작음) * 3 을 하면 최대값이 2.999999999가 나온다.
+
+    let n = parseInt(r*food.length);
+    console.log(n);
+    
+    console.log(`랜덤값은 ${n}이므로, 오늘 당신이 드실 점심은 ${food[n]} 입니다.`);
+    
+</script>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 400px;
+            height: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .headWord {
+            height: 200px;
+            background-color: bisque;
+            font-size: 85px;
+            text-align: center;
+            line-height: 200px; 
+        }
+        .insertWord {
+            height: 150px;
+            background-color: aliceblue;
+            text-align: center;
+        }
+        /* .keyinput 이라는 클래스 내부의 자식들 중 input(후손 선택자) */
+        .insertWord input {
+            width: 98%;
+            height: 98%;
+            background-color: azure;
+            font-size: 70px;
+        }
+        .answer {
+            height: 150px;
+            background-color: antiquewhite;
+            font-size: 90px;
+            font-weight: bold;
+            line-height: 150px;
+            text-align: center;
+        }
+        .scoreBoard {
+            height: 100px;
+            background-color: beige;
+            font-weight: bold;
+            font-size: 40px;
+            line-height: 100px;
+            text-align: center;            
+        }
+    </style>
+    <script>
+        // 게임에 사용할 데이터를 메모리에 올리기
+        let word = ["광화문", "마우스", "토끼", "산성비", "핸드폰", "텀블러", "핸드크림", "목검", "웹툰", "그래픽카드"];
+        let index = 0;
+        let score = 0;
+
+        // 문서 내의 txt라는 클래스 요소의 태그와 태그 사이에 문자열 껴넣기.
+        function init() {
+            let headWord = document.querySelector(".headWord")
+            headWord.innerText = word[index];
+            document.querySelector(".scoreBoard").innerText = "점수: " + score;
+        }
+        // "다음" 이라는 개념이 있다는 것은 곧 순서가 존재한다는 것이고, 순서가 존재하려면
+        // 데이터는 일렬로 늘어진 배열이어야 함.
+        function next() {
+            // 문서 내의 headWord 라는 클래스를 갖는 요소의 innerText의 다음 배열값 출력
+            if (event.keyCode == 13) {  // 엔터키를 눌렀을 때만.
+                // 입력한 단어와 출력된 단어가 일치할 때만
+                // = 문서 내의 .keyinput 클래스의 자식 중 inut 이라는 요소의 현재 값과 headWord의 innerText와 일치하면
+                if (document.querySelector(".keyinput input").value == document.querySelector(".headWord").innerText) { 
+                    index ++;
+                    let headWord = document.querySelector(".headWord");
+                    if (index >= word.length) {
+                        headWord.innerText = "게임 종료";
+                        document.querySelector(".insertWord input").style.display = "none";
+                        document.querySelector(".answer").innerText="";
+                        return;
+                    }
+                    headWord.innerText = word[index];
+                    score += 10;
+                    document.querySelector(".scoreBoard").innerText="점수: " + score;
+
+                    // ox 피드백
+                    document.querySelector(".answer").innerText="O"; // 맞음 표시
+                    document.querySelector(".insertWord input").value=""; // 빈 문자열로 초기화
+                } else {
+                    document.querySelector(".answer").innerText="X"; // 틀림 표시
+                    document.querySelector(".insertWord input").value="";
+                }
+            }
+        }
+    </script>
+</head>
+<!-- HTML 문서가 모두 로드되면 발생하는 이벤트인 onload 핸들러를 사용. -->
+<body onload="init()">
+    <div class="container">
+        <div class="headWord">
+            
+        </div>
+        <div class="insertWord keyinput">
+            <input type="text" onkeyup="next()">
+        </div>
+        <div class="answer">
+
+        </div>
+        <div class="scoreBoard">
+
+        </div>
+    </div>
+    
+</body>
+</html>

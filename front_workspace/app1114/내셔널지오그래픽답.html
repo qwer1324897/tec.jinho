@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        .gallery {
+            width: 600px;
+            height: 550px;
+            margin: auto;
+            background-color: aliceblue;
+            display: flex; /* Flexbox로 aside/content 쉽게 배치 */
+        }
+        .header {
+            width: 100%;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            background-color: #f0f0f0; /* 약간의 시각적 구분 */
+        }
+        .header button {
+            margin: 0 10px; /* 버튼 간격 추가 */
+            padding: 5px 10px;
+        }
+        .thumbnails {
+            width: 100px;
+            height: 500px;
+            overflow-y: auto; /* 썸네일이 많아지면 스크롤 */
+        }
+        .thumbnails img {
+            width: 90px;
+            height: 55.6px;
+            margin: 5px auto;
+            display: block;
+            background-color: aquamarine;
+            cursor: pointer; /* 호버 시 커서 변경 */
+        }
+        .main-image {
+            width: 500px;
+            height: 500px;
+            flex: 1; /* 남은 공간 채움 */
+        }
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 이미지 비율 유지하며 채움 */
+            background-color: beige;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery">
+        <div class="header">
+            <button onclick="prevImage()">이전</button>
+            <button onclick="nextImage()">다음</button>
+        </div>
+        
+        <div class="thumbnails">
+            <img src="./images/geographic/bear.jpg" onmouseover="setImg('bear')">
+            <img src="./images/geographic/diver.jpg" onmouseover="setImg('diver')">
+            <img src="./images/geographic/cosmos.jpg" onmouseover="setImg('cosmos')">
+            <img src="./images/geographic/fox.jpg" onmouseover="setImg('fox')">
+            <img src="./images/geographic/fish.jpg" onmouseover="setImg('fish')">
+            <img src="./images/geographic/mouse.jpg" onmouseover="setImg('mouse')">
+            <img src="./images/geographic/lion.jpg" onmouseover="setImg('lion')">
+            <img src="./images/geographic/turtle.jpg" onmouseover="setImg('turtle')">
+            <img src="./images/geographic/sunset.jpg" onmouseover="setImg('sunset')">
+        </div>
+        
+        <div class="main-image">
+            <img src="" alt="Main Image"> <!-- 초기 src 빈 값 -->
+        </div>
+    </div>
+
+    <script>
+        const imageNames = ['bear', 'diver', 'cosmos', 'fox', 'fish', 'mouse', 'lion', 'turtle', 'sunset'];
+        let currentIndex = 0;
+
+        function updateImage() {
+            const mainImg = document.querySelector(".main-image img");
+            const currentName = imageNames[currentIndex];
+            mainImg.src = `./images/geographic/${currentName}.jpg`;
+            mainImg.alt = `${currentName} image`; // 접근성 위해 alt 추가
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % imageNames.length;
+            updateImage();
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + imageNames.length) % imageNames.length;
+            updateImage();
+        }
+
+        function setImg(imageName) {
+            const newIndex = imageNames.indexOf(imageName);
+            if (newIndex !== -1) {
+                currentIndex = newIndex;
+                updateImage();
+            }
+        }
+
+        // 초기 이미지 로드
+        document.addEventListener('DOMContentLoaded', () => updateImage());
+    </script>
+</body>
+</html>

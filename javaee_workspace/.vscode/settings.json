@@ -1,0 +1,10 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "mysite/WEB-INF/lib/servlet-api.jar",
+            "site1118/src/main/webapp/WEB-INF/lib/mysql-connector-j-8.0.33.jar",
+            "site1118/src/main/webapp/WEB-INF/lib/ojdbc6.jar"
+        ]
+    },
+    "java.configuration.updateBuildConfiguration": "automatic"
+}
