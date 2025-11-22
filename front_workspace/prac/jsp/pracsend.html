@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 이 라인에선 아직 실행부가 버튼에 도달하지 못했으므로, 연결 시점을 뒤로 미뤄야 한다. > 콜백함수 사용.
+        addEventListener("load", function(){  // 콜백함수
+            // 이렇게 하면 문서가 모두 로드되었기 때문에, 원하는 요소에 접근이 가능함.
+            document.querySelector('#bt_send').addEventListener("click", function(){
+                // 폼을 서버로 전송.
+                document.form1.submit();
+            });
+        });
+    </script>
+    <style>
+        body {
+            background-color: cadetblue;
+            margin: 0; /* body의 기본 여백 제거 */
+            height: 100vh; /* 뷰포트 높이 전체 사용 */
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+        }
+        .upload-container {
+            background-color: #333; 
+            padding: 30px; 
+            border-radius: 8px; /* 모서리 둥글게 */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* 그림자 효과 */
+            color: white; /* 텍스트 색상 흰색 */
+            text-align: center; /* 내부 텍스트 중앙 정렬 */
+            width: 300px; /* 창의 너비 지정 */
+        }
+        .fileInput {
+            margin-top: 20px;
+            margin-left: 65px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form name="form1" method="post" enctype="multipart/form-data" action="/upload">
+        <!-- 이미지 업로드를 처리할 서블릿 매핑 -->
+            <div class="upload-container">
+                <h2>서버에 업로드 할 이미지를</h2>
+                <h2>선택하세요</h2>
+                <input type="file" name="photo" class="fileInput">
+                <!-- 파일 컴포넌트에 이름을 부여. 안 하면 서버 측에서 파라미터가 없다고 간주하기 때문에 반드시 설정. -->
+                <input type="text" placeholder="사진의 제목을 입력하세요.">
+                <button type="button" class="bt_send">업로드</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
