@@ -13,4 +13,22 @@
 		<url-pattern>/upload</url-pattern>
 	</servlet-mapping>
 	
+  	<servlet>
+		<servlet-name>pracUploadController</servlet-name>
+		<servlet-class>com.ch.gallery.controller.PracServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pracUploadController</servlet-name>	
+		<url-pattern>/pracUpload</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>pracViewController</servlet-name>
+		<servlet-class>com.ch.gallery.controller.PracViewServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>pracViewController</servlet-name>
+		<url-pattern>/pracView</url-pattern>
+	</servlet-mapping>
+
 </web-app>
