@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container {
+        width: 1500px;
+        height: 700px;
+        margin: auto;
+    }
+    .aside {
+        width: 200px;
+        height: 100%;
+        float: left;
+        background-color: aliceblue;
+    }
+    .content {
+        width: 1300px;
+        height: 100%;
+        float: right;
+        background-color: azure;
+    }
+</style>
+<script>
+    function init() {
+        var mapProp= {
+        center:new google.maps.LatLng(37.49959, 127.03046),
+        zoom:18,
+        };
+        let map = new google.maps.Map(document.getElementById("content"),mapProp);
+
+        // 맵에 마커 띄우기
+        let marker = new google.maps.Marker({position: mapProp.center});
+
+        marker.setMap(map);
+    }
+</script>
+<body>
+    <div class="container">
+        <div class="aside">
+            
+        </div>
+        <div class="content" id="content">
+
+        </div>
+    </div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYZnPpGlwgUBn1etA50w6Uzecg9aWmkxA&callback=init">
+
+    </script>  
+</body>
+</html>

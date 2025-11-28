@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 1000px;
+            height: 700px;
+            background-color: yellow;
+            margin: auto;
+            position: relative; /* 자식에 position 이 명시되었기 때문에 부모인 container 에도 명시되어야 한다.
+                                   static + left.top 이 적용된 상태이며, 다른 태그에 의해 위치가 결정되므로 rellative 라 한다.
+                                   다른 태그에 의해 밀려난 그 자리, 자기 자신 본연의 위치이다. */
+        }  
+    </style>
+    <script>
+        // 총알을 정의하자. (= 클래스를 정의한다.)
+        // java, C# 에서는 개발자가 클래스를 정의하면, 새로운 자료형을 정의하는 것으로 인정해준다.
+        // 그래서 문법 형식은 아래와 같다
+        // int x = 5;
+        // Dog d = new Dog();
+        
+        class Bullet {
+            constructor() {
+                this.x = 0; // x 라는 인스턴스 변수 선언.
+                // java 에서는 전역변수가 필요 없는 이유.
+                // 보통 전역변수란 프로그램이 끝날 때 까지 계속 살아있는 변수를 의미하는데,
+                // 객체지향 언어에서는 class 영역 바깥 쪽에 코드를 작성할 수 없기 때문에, 전역변수를 지원하지 않는다.
+                // 그렇다면 누적은 어떻게 처리하는 가? OOP 언어에서는 개발자가 new에 의해 생성한 인스턴스를 닫는 방법이 없다.
+                // 따라서 인스턴스 변수로 선언하면, 그 객체가 죽을 때 까지는 그 값이 같이 유지되므로
+                // 전역변수를 사용할 일이 없다.
+
+                // 아래의 코드에 의해 div DOM 객체가 생성됨.
+                // DOM(Document Object Model) 이란 문서 내의 모든 태그를 모방하여 객체화 시킨 것. 태그와 1:1 대응된다.
+                this.div=document.createElement("div");   // 총알을 시각화 시킬 div 태그. <div></div> 와 동일한 것.
+                this.div.style.width = 30+"px"; // block 태그는 너비와 높이 적용 가능
+                this.div.style.height = 30+"px"; // block 태그는 너비와 높이 적용 가능
+                this.div.style.backgroundColor = "red";
+                this.div.style.borderRadius=50+"%";
+                // this.div.style.position="absolute"; // 부모를 기준으로 한 위치 속성을 절대위치라 한다.
+
+                // css에서 자식의 position이 명시되면, 반드시 부모도 position을 명시해야 한다.
+                this.div.style.position="absolute";
+                this.div.style.left = 0 + "px";
+                this.div.style.top = 300 + "px";
+
+                // container 에 부착. 메모리에 올라온 DOM 중 id가 stage인 객체를 접근
+                this.container = document.querySelector('.container');
+
+                // container 에 자식요소로 div 부착
+                this.container.appendChild(this.div);
+                
+                this.shot();
+
+                // 컴퓨터에 일정 간격으로 this.move()를 호출하게 한다.
+                // 아래 보이는 함수 정의는 화살표 함수를 말하며, java 언어에서의 Lambda와 사실상 동일하다.
+                // java 에서의 람다는 함수형 인터페이스를 의미.
+                setInterval(() => {
+                    // 화살표 함수 내에서의 this는 자기 자신의 바로 바깥쪽 Context를 의미하므로, 이 총알 객체의 인스턴스를 의미한다.
+                    this.shot();
+                    if (this.x > this.container.offsetWidth) {
+                    clearInterval(this.timerId); // 타이머 멈춤
+                    this.container.removeChild(this.div); // DOM에서 제거
+                }
+                }, 20);
+            }
+
+            // 생성된 총알의 동작을 표현하기 위해 메서드에서 코드 작성
+            shot() {
+                this.x += 10;
+
+                // 총알이 x축 방향으로만 점점 커지면 되기 때문에 left 값만 조정.
+                this.div.style.left = this.x+"px";    // 이곳엔 인스턴스 변수가 와야한다.
+            }
+        }
+
+        // body (문서 자체)에 이벤트를 연결할 때는 window 객체를 사용한다.
+        window.addEventListener("keydown", function(e){  // 콜백함수
+            // alert('키보드 누름?');
+            // 키보드 중 space 바의 아스키를 조건으로 부여하여 new를 시도하자
+            if(e.keyCode == 32) {
+                new Bullet();
+            }
+        });
+    </script>
+</head>
+<body >
+    <div class="container">
+    </div>
+</body>
+</html>

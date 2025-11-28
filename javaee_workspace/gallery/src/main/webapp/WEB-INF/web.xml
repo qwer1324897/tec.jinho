@@ -28,7 +28,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>pracViewController</servlet-name>
-		<url-pattern>/pracView</url-pattern>
+		<url-pattern>/pracview</url-pattern>
 	</servlet-mapping>
 
 </web-app>
