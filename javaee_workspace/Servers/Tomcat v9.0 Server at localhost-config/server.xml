@@ -149,11 +149,8 @@
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
       </Realm>
 
-      <Host appBase="webapps" autoDeploy="true" name="172.30.1.61" unpackWARs="true">
-          <Context docBase="C:\Workspace\tec.jinho\javaee_workspace\mysite" path="" reloadable="true"/>  
-     </Host>
+      <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
 
-     <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true">
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
         <!--
@@ -165,7 +162,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="site1118" path="/site1118" reloadable="true" source="org.eclipse.jst.jee.server:site1118"/><Context docBase="gallery" path="/gallery" reloadable="true" source="org.eclipse.jst.jee.server:gallery"/><Context docBase="notice" path="/" reloadable="true" source="org.eclipse.jst.jee.server:notice"/><Context docBase="memberapp" path="/memberapp" reloadable="true" source="org.eclipse.jst.jee.server:memberapp"/></Host>
+      <Context docBase="site1118" path="/site1118" reloadable="true"/></Host>
     </Engine>
   </Service>
 </Server>
