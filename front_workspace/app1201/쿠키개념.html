@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        쿠키: 브라우저가 저장해놓은 작은(최대 4kb) 문자열 데이터
+        브라우저를 이용하여 서버에 요청을 보낼 때, 함께 전송되며, 형식은 key = value 이다.
+        쿠키에는 객체를 넣을 수 없다. 쿠키는 오직 문자열만 삽입 가능.
+        따라서 let member={id:"jin", email:"naver"} 와 같은 객체를 넣을 땐 문자열로 바꿔서 넣어야 한다.
+        특정 객체를 문자열로 변환할 때 js 요구하는 객체형태를 유지하며 넣을 수 있어야 한다.(JSON)
+
+        쿠키 사용 예시) 로그인 시 아이디 기억하기 체크, 오늘 하루 보지 않기 팝업 설정 등
+
+        쿠키에 데이터를 넣을 땐 제일 앞에 오는 key = value 의 쌍을 데이터로 인정하고, ;(세미콜론) 이후부터는
+        쿠키의 옵션으로 처리한다. 따라서 쿠키에는 여러 데이터들을 한 번에 넣을 수 없다.
+            1. expires 옵션: 쿠키의 유지 시간을 절대 시간으로 지정하는 옵션.
+            2. max-age 옵션: 현재 시점 기준으로 n초 동안 유지 (자주 쓰임) 60(초)*60(분)*24(시간)*3(일) = 3일간 유지
+                            document.cookie="nickname=Jin; max-age=20";(20초 동안 쿠키 유지)
+            3. path 옵션
+            4. domain 옵션
+            5. secure 옵션
+        쿠키는 삭제할 때 max-age 옵션을 통해 삭제한다.(남은시간 0초로 지정)
+
+        */
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
