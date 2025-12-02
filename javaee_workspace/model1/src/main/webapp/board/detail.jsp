@@ -1,4 +1,15 @@
+<%@page import="com.ch.model1.dto.Board"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="com.ch.model1.repository.BoardDAO"%>
+<%
+	BoardDAO boardDAO = new BoardDAO();
+%>
+<%
+	// list.jsp 로부터 전송되어온 파라미터인 board_id 의 값을 이용하여 DAO 를 이용한다.(select 메서드 호출)
+	// select * from board where board_id=n
+	String board_id = request.getParameter("board_id");
+	Board board = boardDAO.select(Integer.parseInt(board_id));
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,15 +58,6 @@ input[type=button]:hover {
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote.min.js"></script>
 <script>
-	function regist(){
-		// 적용 속성이 다수일 경우, 한꺼번에 객체로 지정할 수 있는 .attr() 지원
-		$("form").attr({
-			action:"/board/regist",	// 이 요청을 받는 JavaEE 기반의 기술은 jsp와 servlet 둘 다 디자인 유무에 따라 선택
-			method:"post"
-		});
-		$("form").submit();	// 이 시점에 전송 요청이 발생
-	}
-
 
 $(function(){
 	// 서머노트 연동
@@ -64,35 +66,57 @@ $(function(){
 		height:250
 	});
 	
-	// 글쓰기와 목록 버튼에 이벤트 연결
-	$("#bt_regist").click(function(){
-		// 글쓰기 폼 전송
-		regist();
+	// 글수정 버튼에 이벤트 연결
+	$("#bt_edit").click(function(){
+		if(confirm("수정하시겠습니까?")) {
+			$("form").attr({
+				action:"/board/edit",
+				method:"POST"
+			})	;
+			$("form").submit();
+		}
+		
 	});
 	
-	// 목록 버튼에 이벤트 연결
+	// 글삭제 버튼에 이벤트 연결
+	$("#bt_del").click(function(){
+		if(confirm("삭제하시겠습니까?")) {
+			$("form").attr({
+				action:"/board/delete",
+				method:"POST"
+			})	;
+			$("form").submit();
+		}
+	});
+	
+	// 글목록 버튼에 이벤트 연결
 	$("#bt_list").click(function(){
 		location.href="/board/list.jsp";
-	});	
+	});
 	
 });
 	
 </script>
 </head>
 <body>
-
+<h2>상세보기</h2>
 <div class="container">
-  <form action="/action_page.php">
+  <form>
+ 	
+ 	<!-- 디자인적으로 보여지지 않고, 오직 개발자 필요에 의해 넘기는 파라미터일 경우 숨김 파라미터가 되어야 함 -->
+ 	<input type="hidden" name="board_id" value="<%=board.getBoard_id()%>">
+  
     <label for="fname">제목</label>
-    <input type="text" id="fname" name="title" placeholder="Your title">
+    <input type="text" id="fname" name="title" value="<%=board.getTitle()%>">
 
     <label for="lname">작성자</label>
-    <input type="text" id="Iname" name="writer" placeholde" writer>
+    <input type="text" id="Iname" name="writer" placeholder = "<%=board.getWriter()%>">
 
     <label for="subject">내용</label>
-    <textarea id="summernote" name="content" placeholder="Write something.." style="height:200px"></textarea>
+    <textarea id="summernote" name="content" placeholder="Write something.." style="height:200px"><%=board.getContent()%></textarea>
 
-    <input type="button" value="글등록" id="bt_regist">
+    <input type="button" value="수정" id="bt_edit">
+    <input type="button" value="삭제" id="bt_del">
     <input type="button" value="목록" id="bt_list">
   </form>
 </div>

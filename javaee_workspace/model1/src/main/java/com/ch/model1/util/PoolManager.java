@@ -1,6 +1,8 @@
 package com.ch.model1.util;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.naming.InitialContext;
@@ -35,5 +37,63 @@ public class PoolManager {
 		return connection;
 	}
 	
+	// 빌려간 커넥션만을 반납.
+	public void closeConnection(Connection connection) {
+		if(connection != null) {
+			try {
+				// 주의) 기존 JDBC 코드는 다 사용한 커넥션들은 닫았지만, Pool 로부터 얻어온 커넥션은 닫으면 안 됨.
+				connection.close();
+				// 이 객체는 DataSource 구현체로부터 얻어온 Connection 이기 때문에 일반적 JDBC 의 닫는 close() 가 아니다 
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
+	
+	// 아래의 오버로딩 메서드는 DML에 사용. 빌려간 pstmt와 connection 반납
+	public void closeConnection(PreparedStatement pstmt, Connection connection) {
+		if(pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	// rs, pstmt, connection 셋 다 반납
+	public void closeConnection(ResultSet rs,  PreparedStatement pstmt, Connection connection) {
+		if(rs != null) {
+			try {
+				rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		if(pstmt != null) {
+			try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		if(connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}	
+		
+	}	
 	
 }

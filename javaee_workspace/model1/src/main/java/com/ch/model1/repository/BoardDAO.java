@@ -17,8 +17,8 @@ import com.ch.model1.util.PoolManager;
 
 // 데이터베이스의 Board table 에 대한 CRUD를 수행하는 객체
 public class BoardDAO {
-	
 	PoolManager pool = new PoolManager();
+	
 	
 	// Create(=insert)
 	// 글 1건을 등록하는 메서드
@@ -41,7 +41,7 @@ public class BoardDAO {
 			pstmt = connection.prepareStatement(sql);
 			
 			pstmt.setString(1,board.getTitle());
-			pstmt.setString(2, board.getRegdate());
+			pstmt.setString(2, board.getWriter());
 			pstmt.setString(3, board.getContent());
 			
 			result = pstmt.executeUpdate();
@@ -61,22 +61,7 @@ public class BoardDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			if(pstmt!=null ) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if(connection != null) {
-				try {
-					// 주의) 기존 JDBC 코드는 다 사용한 커넥션들은 닫았지만, Pool 로부터 얻어온 커넥션은 닫으면 안 됨.
-					connection.close();
-					// 이 객체는 DataSource 구현체로부터 얻어온 Connection 이기 때문에 일반적 JDBC 의 닫는 close() 가 아니다 
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}	
-			}
+			pool.closeConnection(pstmt, connection);
 		}
 		return result;
 	}
@@ -108,9 +93,10 @@ public class BoardDAO {
 			while(rs.next()) {		// 커서를 이동하면서 true 인 동안만(= 모든 레코드 만큼)
 				
 				Board board = new Board();		// 게시물 한 건을 담을 수 있는 Board DTO 클래스의 인스턴스 1개 준비.(현재 비어있음)
-				board.setBoard_id(rs.getInt("board_id")); 		// pk 담기
+				board.setBoard_id(rs.getInt("board_id")); 		// id 담기
 				board.setTitle(rs.getString("title")); 	// 제목 담기
 				board.setWriter(rs.getString("writer")); 		// 작성자 담기
+				board.setContent(rs.getString("content"));
 				board.setRegdate(rs.getString("regdate"));
 				board.setHit(rs.getInt("hit"));
 				
@@ -118,13 +104,94 @@ public class BoardDAO {
 			}
 		} catch (SQLException e) {                                                                                                                       
 			e.printStackTrace();
+		} finally {
+			// con, pstmt, rs 를 대신 닫아주는 메서드 호출
+			pool.closeConnection(rs, pstmt, connection);
 		}
 		return list;	// rs를 대체하는 객체지향 형태로 변환
 	}
 	
+	// 레코드 한 건 가져오기
+	public Board select(int board_id) {
+		// 쿼리 실행을 하기 위한 db 접속은 현재 코드에서 시도하지 말고, Connection Pool 로부터 가져오자
+		Connection connection = pool.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Board board = null;
+		
+		try {
+			String sql = "select * from board where board_id=?";
+			pstmt = connection.prepareStatement(sql);
+			pstmt.setInt(1, board_id);
+			rs=pstmt.executeQuery();	// select 문 실행
+			
+			// rs 가 죽어도 상관없으려면, 게시물 1 건을 표현할 수 있는 대체제를 사용해야 한다.
+			// DB의 레코드 1 건은 java의 DTO 인스턴스 1개와 매핑
+			
+			if (rs.next()) {	// next()가 true 인 경우, 즉 쿼리 실행에 의해 조건에 맞는 레코드가 존재할 때만 DTO를 반환하자.
+				board = new Board();	// 현재 비어있는 상태
+				board.setBoard_id(rs.getInt("board_id")); 		// id 담기
+				board.setTitle(rs.getString("title")); 	// 제목 담기
+				board.setWriter(rs.getString("writer")); 		// 작성자 담기
+				board.setContent(rs.getString("content"));
+				board.setRegdate(rs.getString("regdate"));
+				board.setHit(rs.getInt("hit"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pool.closeConnection(rs, pstmt, connection);
+		}
+		return board;
+	}
 	
 	// Update
+	// 레코드 1 건 수정
+	public int update(Board board) {
+		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		int result = 0;	// 쿼리 실행 결과를 반환할 지역변수. 지역변수이다 보니 개발자가 직접 초기화 해야 한다.
+		
+		connection = pool.getConnection();
+		String sql = "update board set title=?, writer=?, content=? where board_id=?";
 	
+		try {
+			pstmt=connection.prepareStatement(sql);
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getWriter());
+			pstmt.setString(3, board.getContent());
+			pstmt.setInt(4, board.getBoard_id());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pool.closeConnection(pstmt, connection);
+		}
+		return result;
+	}
+
 	// Delete
 	
+	public int delete(Board board) {
+		
+		Connection connection = null;
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		connection = pool.getConnection();
+		String sql = "delete from board where board_id=" +board.getBoard_id();
+		try {
+			pstmt = connection.prepareStatement(sql);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			pool.closeConnection(pstmt, connection);
+		}
+		return result;
+	}
 }
