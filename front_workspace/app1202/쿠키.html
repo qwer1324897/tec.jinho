@@ -32,9 +32,13 @@
                 }
             }
         }
-        function getCookie2() {
-            const cookie = cookieStore.get('email');
-            return(cookie);
+        async function getCookie2() {
+            const cookie = await cookieStore.get('email');
+            if (cookie) {
+                return cookie.value;
+            } else {
+                return null;
+            }
         }
     </script>
 </head>
