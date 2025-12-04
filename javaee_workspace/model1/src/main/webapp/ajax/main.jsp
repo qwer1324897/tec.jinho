@@ -6,7 +6,7 @@
 	Member2DAO dao = new Member2DAO();
 %>
 <%
-	List<Member2> memberList = dao.slelectAll();
+	List<Member2> memberList = dao.selectAll();
 %>
 <!DOCTYPE html>
 <html>
@@ -63,16 +63,17 @@
 			// 해결책. 어떤 문자열이 JSON 기법을 준수하여 작성되어 있다면 js는 내장객체인 JSON 내장 객체를 이용하여
 			// 문자열을 해석해서 실제 자바스크립트 객체 리터럴로 전환해줄 수 있다.
 			
-			let obj = JSON.parse(xhttp.response.Text); 	// 문자열을 해석하여 JSON 구분 형식에 맞츨 경우만, 객체 리터럴로 전환해준다.
+			let memberList = JSON.parse(xhttp.responseText); 	// 문자열을 해석하여 JSON 구분 형식에 맞츨 경우만, 객체 리터럴로 전환해준다.
 			// 정말로 obj가 js 의 인스턴스라면, 객체, 속성을 접근할 수 있어야 한다.
 			// 따라서 검증해보자
 			
-			console.log("email 은 ", obj.email);
-			
-			// console.log("서버로부터 받은 응답 정보는 ", xhttp.responseText);
-			
+			// console.log("email 은 ", obj.email);
 			// 서버로부터 전송되어온 문자열을 대상으로 원하는 값 추출하기
-		
+			
+			console.log("서버로부터 받은 응답 정보는(그냥 문자열) ", xhttp.responseText);
+			console.log("서버가 보낸 문자열을 파싱한 결과(객체화)", memberList )
+			
+		};
 		// 요청할 준비
 		xhttp.open("POST", "/ajax/async_regist.jsp");		// 어떤 서버의 주소에 요청을 시도하고, 어떤 HTTP 메서드로 요청을 시도할지 결정하는 메서드
 		
@@ -107,7 +108,7 @@
 		//			  	   동적으로 처리하는데 많은 시간과 노력이 필요다하(렌더링)
    		//			참고) 이렇게 시대가 지날수록 페이지를 동적으로 처리하는 양이 너무 많아지니까 페북 개발자들이 만들어낸 자바스크립트 기반의 프레임웤이 React.js 이다.(+ Vue.js)
         $($("form button")[1]).click(()=>{
-            sendAsync();
+        	sendAsync();
         });
     });
 

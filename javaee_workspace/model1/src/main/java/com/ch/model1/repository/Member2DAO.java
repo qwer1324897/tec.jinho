@@ -46,7 +46,7 @@ public class Member2DAO {
 	}
 	
 	// 모든 레코드 가져오기
-	public List slelectAll() {
+	public List selectAll() {
 		Connection connection = pool.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

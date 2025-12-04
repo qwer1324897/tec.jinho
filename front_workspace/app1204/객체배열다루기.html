@@ -1,0 +1,43 @@
+<script>
+    // let memberList = [문자,숫자,논리값,객체형]; // 자바스크립트 배열에선 이렇게 4개를 담을 수 있다.
+    
+    
+    // 다수의 객체 리터럴을 JSON 문자열로 다루는 법
+
+    let memberList=[
+        {
+            id:"chulsoo",
+            name:"철수",
+            age:20
+        },
+        {
+            id:"younghee",
+            name:"영희",
+            age:22,
+            pets:[
+                {
+                    id:"dog",
+                    name:"cookie",
+                    age:13,
+                    type:"Mix"
+                },
+                {
+                    id:"cat",
+                    name:"navi",
+                    age:15,
+                    type:"BritishShorthair"
+                }
+            ]
+        },
+        {
+            id:"minsoo",
+            name:"민수",
+            age:24            
+        }
+    ]
+
+    // 객체 리터럴 배열을 JSON으로 변환할 때도 똑같이 api 에 넣으면 된다.
+    let data = JSON.stringify(memberList);
+    console.log(data);
+ 
+</script>

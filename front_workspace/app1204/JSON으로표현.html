@@ -1,0 +1,19 @@
+<script>
+    let chulsoo = "{\"id\":\"ch\", \"name\":\"철수\", \"age\":30}";
+    console.log(chulsoo);
+
+    // 객체 리터럴을 JSON(문자열) 으로 변경 시 위의 방법은 매번 할 수가 없다.
+
+    let Jin = {
+        id : "Jin",
+        name : "진",
+        age : 30
+    };
+    let dataJson = JSON.stringify(Jin);
+    // 이렇게 js에 내장된 JSON API 딸깍으로 바꿔준다.
+    console.log(dataJson);
+
+
+    let dataObject = JSON.parse(dataJson);
+    // 이렇게 또 다시 객체로 변환할 수도 있다.
+</script>

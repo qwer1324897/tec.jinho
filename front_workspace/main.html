@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+    .container {
+        width: 650px;
+        height: 500px;
+        margin: auto;
+    }
+    .aside {
+        width: 150px;
+        height: 100%;
+        background-color: aliceblue;
+        float: left;
+    }
+    .aside input{
+        width: 90%;
+    }
+    .aside button {
+        width: 40%;
+    }
+    .content {
+        width: 500px;
+        height: 100%;
+        background-color: azure;
+        float: right;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+	function regsit() {
+		// 비동기로 서버에 요청을 시도하자
+		let xhttp = XMLHttpRequest();   // js의 비동기 통신 객체
+
+        xhttp.open("POST", "/ajax/ajax_regsit.jsp");    // 요청 방법 및 요청 주소 지정
+        xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset-utf-8")  // 전송시 헤더 지정
+        xhttp.send();
+        // 비동기 요청 출발. 이 때, 요청 시도 자체를 js 가 하지 않고 브라우저에게 시킨다
+        // js는 응답 정보가 올 때까지 대기상태가 되는 게 아니라, 다른 일을 할 수 있다(비동기 방식)
+        // 응답이 올 때까지 기다리지 않기 때문에 순서가 없는 것.
+        // 브라우저가 응답을 받으면, js에게 알린다. 이 때 js의 XMLHttpRequest의 onload 속성에 지정한 익명함수인 콜백함수 호출.(누가? js가)
+	}
+
+
+	$(()=>{
+		$("button").click(()=>{
+			regist();
+		});
+	});
+</script>
+</head>
+<body>
+    <div class="container">
+        <div class="aside">
+            <form>
+                <input type="text" placeholder="ìì´ë" name="id">
+                <input type="text" placeholder="ì´ë¦" name="name">
+                <input type="text" placeholder="ì´ë©ì¼" name="email">
+                <button type="button">등록(비동기)</button>
+            </form>
+        </div>
+        <div class="content">
+        </div>
+    </div>
+</body>
+</html>

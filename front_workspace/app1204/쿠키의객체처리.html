@@ -1,0 +1,45 @@
+<script src="../lib/util.js"></script>
+
+<script>
+
+    /*
+    oop 에서는 데이터를 다룰 때 주로 객체로 표현하므로, 쿠키에 객체를 넣어보자.
+    그런데 쿠키는 문자열이기 때문에 객체를 넣어도 문자열로 인식해버린다.
+    */
+    // let member = {
+    //     name:"Jin", email:"google"
+    // }
+
+    /*
+    1. <name=Jin, email=google>"
+
+    // 1번 방식의 문자열 변환도 문법상 문제는 없지만, 추후 쿠키에 들어간 문자열을 객체로 꺼낼 때 JSON 표기와 맞지 않기 때문에 탈락.
+    // JSON이 뭔데?
+    // 그냥 문자열이다. JavaScript 의 객체리터럴을 모방한 문자열.
+    // 문자열 상태에서 JSON 표기를 준수한다면, 객체로 변환할 수 있기 때문에.
+
+    2. { name:'Jin', email:'google'}"
+
+    3. {"nmae":"Jin", "email":"google"}  
+    
+    // 1, 2번과 다르게 3번은 완벽한 JSON 표기를 준수.
+    */
+
+    // 위에서 생성한 js의 객체리터럴 (3번)을 쿠키에 넣어보자.
+    // JSON 표기를 프로그래밍 언어(java,js,c#,python ...) 에서 사용하려면,
+    // 문자열이기 때문에 쌍따옴표로 감싸야 한다(문자 리터럴 준수)
+    let member = "{\"name\":\"Jin\", \"email\":\"google\"}";
+    document.cookie="user="+ member +"; max-age=60*5";
+
+    // 넣을 때 user 라는 key 를 이용했으므로, 검색 또한 user 라는 키를 이용하자
+    let user = getCookie("user");   // 지금까진 문자열 상태. 따라서 아직 객체가 아님.
+    // '{"name":"Jin", "email":"google"}'
+    // 꺼내온 결과 문자열이 js의 객체리터럴과 매우 흡사하고, JSON 표기도 준수한 상태이므로,
+    // 이 문자열은 객체로 변환할 자격이 된다.
+    let data = JSON.parse(user);    // 이제 JSON 표기에 맞는 문자열 상태를 JS의 객체리터럴로 자동 전환 => 이제 진정한 객체.
+
+    console.log("이름은", data.name, "이메일은", data.email);
+
+    // 결론: data 는 이제 객체이므로, 그 안에 들어있는 속성들을 점(.)찍고 바로 접근할 수 있는 상태가 됐으므로,
+    //      객체를 다루는 oop 개발자에게 매우 친숙하게 데이터 처리가 가능하다.
+</script>
