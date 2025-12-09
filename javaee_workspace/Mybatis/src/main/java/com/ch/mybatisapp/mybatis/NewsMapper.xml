@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.mybatisapp.dto.News">
+	<!-- 
+		Mybatis 를 이용하면 DB의 각 테이블마다 1:1 대응하는 매퍼를 지원한다.
+		개발자는 자바 코드가 아닌 이 xml 에서 각 테이블에 대한 CRUD 를 수행한다.
+		
+		#{title), #{writer}, #{content} 작성 시 #{}안의 변수명은
+		파라미터로 전송된 News 클래스 안에 정의된 멤버변수명을 사용해야 한다.
+	 -->
+	<insert  id = "insert" parameterType="com.ch.mybatisapp.dto.News">
+		insert into news(title, writer, content) values(#{title}, #{writer}, #{content})
+	</insert>
+
+</mapper>
