@@ -18,11 +18,11 @@ import com.ch.mvframework.food.model.FoodManager;
 
 // 모델2이 컨트롤러 요건(위 1, 2번)에 맞는 서블릿으로 진행.
 
-public class FoodController{
+public class FoodController implements Controller{
 
 	FoodManager foodManager = new FoodManager();
 	
-	protected void handle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 클라이언트의 요청 파라미터 받기
 		request.setCharacterEncoding("utf-8");
 		// response.setContentType("utf-8");  의 경우, 더 이상 디자인을 담당하지 않기에 필요 없다.
@@ -39,5 +39,15 @@ public class FoodController{
 		
 		
 		
+	}
+
+	@Override
+	public String getViewName() {
+		return null;
+	}
+
+	@Override
+	public boolean isForward() {
+		return false;
 	}
 }

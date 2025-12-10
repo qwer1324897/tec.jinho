@@ -25,11 +25,11 @@ import com.ch.mvcframework.movie.model.MovieManager;
  * 	   컨트롤러로서의 역할은 서블릿으로 구현한다.
  * 
  */
-public class MovieController{
+public class MovieController implements Controller{
 	
 	MovieManager movieManager = new MovieManager();
 
-	protected void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String movie = request.getParameter("movie");
 		
@@ -61,5 +61,15 @@ public class MovieController{
 		// 위 코드는 응답을 하면서 브라우저로 하여금 재접속하게 되는 코드. 따라서 응답하게되므로 포워딩에 맞지 않다.
 		
 		
+	}
+
+	@Override
+	public String getViewName() {
+		return null;
+	}
+
+	@Override
+	public boolean isForward() {
+		return false;
 	}
 }

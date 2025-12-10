@@ -1,5 +1,17 @@
 # 자바의 컬렉션 프레임웍 객체 중 Map을 상속받은 Properties 라는 객체는
 # 어떤 데이터가 = 을 기준으로 key = value 의 쌍으로 구성될 경우, 좌측은 key 우측은 value 로 해석한다.
 
-/movie.do = MovieController
-/food.do = FoodController
+/movie.do=com.ch.mvcframework.controller.MovieController
+/food.do=com.ch.mvcframework.controller.FoodController
+
+# 게시판 컨트롤러 매핑
+/board/regist.do=com.ch.mvcframework.controller.RegistController
+/board/list.do=com.ch.mvcframework.controller.ListController
+/board/detail.do=com.ch.mvcframework.controller.DetailController
+
+# 게시판 View페이지 매핑
+# 자바 코드 안에 View 페이지 명을 하드코딩하면 외부 파일의 명칭이 달라질 경우 로직에 영향을 받게 됨.
+# 따라서 유지보수성을 위해 자바 클래스 안에는 파일명 하드코딩 금지.
+/board/regist/result=/board/list.do
+/board/list/result=/board/list.jsp
+/board/detail/result=/board/detail.jsp
