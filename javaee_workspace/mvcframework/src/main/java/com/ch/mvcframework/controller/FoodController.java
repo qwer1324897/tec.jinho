@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.ch.mvframework.food.model.FoodManager;
+import com.ch.mvcframework.food.model.FoodManager;
 
 // 음식에 대한 판단 요청을 처리하는 컨트롤러
 // MVC - 개발 이론, 방법론

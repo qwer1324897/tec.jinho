@@ -1,4 +1,4 @@
-package com.ch.mvframework.food.model;
+package com.ch.mvcframework.food.model;
 
 public class FoodManager {
 
