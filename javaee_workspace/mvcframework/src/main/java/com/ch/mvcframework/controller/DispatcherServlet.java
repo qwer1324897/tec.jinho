@@ -61,7 +61,7 @@ public class DispatcherServlet extends HttpServlet{
 	// 클라이언트의 요청 방식이 다양하므로, 어떤 요청 방식으로 들어오더라도, 아래의 메서드 하나로 몰아넣는다면
 	// 코드를 메서드마다 재작성할 필요가 없다.
 	public void doRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		// request.setCharacterEncoding("utf-8");		필터에서 한글처리. 필터가 맨 먼저 마주하기 때문에 그 뒤는 안 해도 됨
 		// 부모 서블릿에 이렇게 한글처리 해놓으면 하위 컨트롤러는 할 필요가 없으나, 이것 마저 추후 필터 단계로 올릴 예정
 		System.out.println("클라이언트의 요청 감지");
 		/*

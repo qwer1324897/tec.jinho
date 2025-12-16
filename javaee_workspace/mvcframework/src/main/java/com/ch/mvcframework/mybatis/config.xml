@@ -6,16 +6,15 @@
 
 	 <typeAliases>
 	 	<typeAlias type = "com.ch.mvcframework.dto.Board" alias="Board"/>
+	 	<typeAlias type = "com.ch.mvcframework.dto.Dept" alias="Dept"/>
+	 	<typeAlias type = "com.ch.mvcframework.dto.Emp" alias="Emp"/>
 	 </typeAliases>
 	 
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
-      <dataSource type="POOLED">
-        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/java"/>
-        <property name="username" value="servlet"/>
-        <property name="password" value="1234"/>
+      <dataSource type="JNDI">
+        <property name="data_source" value="java:comp/env/jndi/mysql"/>
       </dataSource>
     </environment>
   </environments>
@@ -23,6 +22,8 @@
 <!-- 자바 코드 대신 쿼리문을 작성해 놓은 파일을 매퍼라고 하며 매퍼의 위치는 아래의 mappers 태그의 자식 태그로 등록해야 한다. -->
   <mappers>
     <mapper resource="com/ch/mvcframework/mybatis/BoardMapper.xml"/>
+    <mapper resource="com/ch/mvcframework/mybatis/DeptMapper.xml"/>
+    <mapper resource="com/ch/mvcframework/mybatis/EmpMapper.xml"/>
   </mappers>
 
 </configuration>

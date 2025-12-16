@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>mvcframework</display-name>
+  
+  <!--
+  Java EE 기술에서는 서블릿의 요청 처리보다 앞선 객체인 필터가 지원된다. 이 객체를 정의해놓으면 모든 요청이 반드시 이 객체를 거쳐가기 때문에 필터라고 한다.
+  필터의 주 용도는 웹애플리케이션 방문 시 제일 처음에 거쳐가게 되므로 접속자 수 통계, 인코딩 처리 등의 공통적 처리에 사용됨.
+  주의) 서블릿보다 반드시 앞서서 정의해야 필터가 동작됨		
+   -->
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>com.ch.mvcframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+  
 
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
@@ -19,5 +40,13 @@
 		<!-- 앞의 어떤 경로가 오든 상관 없으며, 단 확장자가 .do 이면 무조건 DispatcherServlet 을 만나게 됨. -->
 		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
+	
+ 	<resource-ref>
+		<description>MySQL DataSource</description>	
+		<res-ref-name>jndi/mysql</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>	 
+		<res-auth>Container</res-auth>		
+ 	</resource-ref>	
+	
 	
 </web-app>

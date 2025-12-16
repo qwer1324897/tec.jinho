@@ -27,7 +27,7 @@ $(()=>{
 	document.querySelector(".bt_regist").addEventListener("click", function(){
 		// 서버에 전송
 		let form1 = document.querySelector(".form1");
-		form1.action="/board/regist.do";	// .do 로 끝나기 때문에 DispatcherServlet 을 만나게 됨.
+		form1.action="/board/regist";	
 		form1.method="post";
 		form1.submit();
 	});

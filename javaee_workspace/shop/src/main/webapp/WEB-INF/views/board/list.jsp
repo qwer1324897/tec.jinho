@@ -1,4 +1,4 @@
-<%@page import="com.ch.mvcframework.dto.Board"%>
+<%@page import="com.ch.shop.dto.Board"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%

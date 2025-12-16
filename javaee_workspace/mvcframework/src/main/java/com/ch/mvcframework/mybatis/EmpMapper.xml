@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Emp">
+
+<!-- 글 1 건 등록 -->
+<insert id = "insert" parameterType="Emp">
+	insert into emp2(empno, ename, sal) values(#{empno},#{ename},#{sal})
+</insert>
+
+<!-- 모든 글 가져오기 -->
+<select id="selectAll" resultType="Emp">
+	select board_id, title, writer, content, regdate, hit
+	from emp2 order by board_id desc
+</select>
+
+<select id="select" parameterType="int" resultType = "Emp">
+	select board_id, title, writer, content, regdate, hit
+	from emp2 where board_id=#{board_id}
+</select>
+
+<!-- 게시물 1 건 삭제 -->
+<delete id="delete" parameterType="int">
+	delete from emp2 where board_id=#{board_id}
+</delete>
+
+<!-- 게시물 1건 수정 -->
+<update id="update" parameterType="Emp">
+	update emp2 set title=#{title}, writer=#{writer}, content=#{content}
+	where board_id=#{board_id}
+</update>
+
+</mapper>
+
+
+
+
+
