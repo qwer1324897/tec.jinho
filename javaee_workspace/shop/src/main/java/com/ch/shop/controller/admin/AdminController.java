@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class AdminController {
 	
 	// 관리자 모드의 메인인 대시보드 요청을 처리
-	@GetMapping("/admin/main")
+	@GetMapping("/main")
 	public String main() {
 		
 		// 3단계: 현재 없음

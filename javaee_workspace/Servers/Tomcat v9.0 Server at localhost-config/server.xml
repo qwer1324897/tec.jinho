@@ -50,11 +50,7 @@
   	-->
   	<!-- javax.sql.DataSource 가 커넥션풀 구현체이다. -->
   	
-  	<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" 
-  	factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" 
-  	initialSize="5" maxActive="50" maxWait="10000" 
-  	name="jndi/mysql" password="1234" type="javax.sql.DataSource" 
-  	url="jdbc:mysql://localhost:3306/shop?characterEncoding=UTF-8" username="shop"/> 
+  	<Resource auth="Container" driverClassName="com.mysql.cj.jdbc.Driver" factory="org.apache.tomcat.jdbc.pool.DataSourceFactory" initialSize="5" maxActive="50" maxWait="10000" name="jndi/mysql" password="1234" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/shop?characterEncoding=UTF-8" username="shop"/> 
   	
   	<!-- maxActive : 최대 연결
   		   InitialSize = 5 : 최초에 5개를 확보
