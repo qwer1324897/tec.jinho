@@ -1,5 +1,7 @@
 package com.ch.shop.config.spring;
 
+import java.util.List;
+
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
@@ -10,16 +12,54 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 // 로직 작성용이 아니라 전통적으로 사용해왔던 스프링의 Bean 을 등록하는 용도의 xml 을 대신하기 위한 자바 클래스.
 // 이 클래스에 등록될 Bean 들은 비즈니스 로직을 처리하는 Model 영역의 Bean 들이므로, 서블릿 수준의 스프링 컨테이너가 사용하는 게 아니라
 // 모든 서블릿이 접근할 수 있는 객체인 ServletContext 수준에서의 스프링 컨테이너가 이 클래스를 읽어들여 Bean 들의 인스턴스를 관리해야 한다.
 @Configuration    // xml 을 대신함
 @ComponentScan(basePackages = {"com.ch.shop.model"})
-public class RootConfig {
+public class RootConfig extends WebMvcConfigurerAdapter {
+
+	// DispatcherServlet 이 하위 컨트롤러부터 반환받은 View형태의 결과페이지에 대한 정보("board/list")는 완전한 jsp 경로("WEB-INF/views/board/list.jsp)가 아니므로,
+	// 이를 해석할 수 있는 ViewResolver 에게 맡겨야 한다. 이 ViewResolver 중 접두어와 접미어를 이해하는 ViewResolver 를 InternalResourceViewResolver 라고 한다.
+	// 개발자는 이 객체에게 접두어와 접미어를 사전에 등록해 놓아야 한다.(지금의 경우, /WEB-INF/views 와 .jsp)
+	
+	@Bean
+	public InternalResourceViewResolver viewResolver() {	// 페이지에 대한 매핑
+		InternalResourceViewResolver irvr = new InternalResourceViewResolver();
+		// 접두어 등록
+		irvr.setPrefix("/WEB-INF/views/");
+		
+		// 접미어 등록
+		irvr.setSuffix(".jsp");
+		return irvr;
+	}	
+	
+	// DispatcherServlet 은 컨트롤러에 대한 매핑만 수행해야하며 정적자원(html, css, js, imagage 등) 에 대해서는 직접 처리하면 안 된다.(스프링이 원래 그렇다)
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		// registry.addResourceHandler("브라우저로 접근할 주소").addResourceLocations("웹애플리케이션을 기준으로 실제 정적 자원이 있는 위치");
+		registry.addResourceHandler("/static/**").addResourceLocations("/resources/");
+		
+		// 이렇게 해놓으면 DispatcherServlet 이 정적자원은 안 맡는다.
+	}	
+	
+	
+	// Jackson 라이브러리 사용을 설정
+	
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		converters.add(new MappingJackson2HttpMessageConverter());	// Jackson 객체 넣기
+	}	
+	
 	
 	// 스프링이 MVC 프레임웤중 컨트롤러 영역만을 지원하는 것이 아니라 DB 관련 제어도 지원하므로, 
 	// 기존에 사용해왔던 mybatis를 스프링이 지원하는 mybatis 로 전환하자.
