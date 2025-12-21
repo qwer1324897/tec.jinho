@@ -26,8 +26,7 @@
 <body>
 
 <div class="container">
-  <h2>Basic Table</h2>
-  <p>The .table class adds basic styling (light padding and horizontal dividers) to a table:</p>            
+  <h2>게시글 목록</h2>      
   <table class="table">
     <thead>
       <tr>
@@ -45,7 +44,7 @@
          DB 연동이 필요한 기능에서 jsp를 바로 호출하게 되면 컨트롤러를 만나지 못하므로 데이터를 가져오지 못함 -->
         	<a href="/board/detail.do?board_id=<%=board.getBoard_id()%>"><%=board.getTitle() %></a>
         </td>
-        <td><%=board.getWriter() %>></td>
+        <td><%=board.getWriter() %></td>
         <td><%=board.getRegdate() %></td>
       </tr>
       <%} %>

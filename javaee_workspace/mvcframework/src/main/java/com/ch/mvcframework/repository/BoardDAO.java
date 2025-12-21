@@ -12,7 +12,7 @@ import com.ch.mvcframework.mybatis.MyBatisConfig;
 public class BoardDAO {
 	MyBatisConfig myBatisConfig = MyBatisConfig.getInstance();
 	
-	// 글 한 건 등록
+	// 글 1 건 등록
 	public int insert(Board board) {
 		
 		int result = 0;
@@ -38,7 +38,7 @@ public class BoardDAO {
 		return list;
 	}
 	
-	
+	// 1건 가져오기
 	public Board select(int board_id) {
 		Board board = null;
 		SqlSession sqlSession = myBatisConfig.getSqlSession();
@@ -46,6 +46,28 @@ public class BoardDAO {
 		myBatisConfig.release(sqlSession);
 		return board;
 	}
+	
+	// 1건 삭제
+	public int delete(int board_id) {
+		int result = 0;
+		// SqlSession = Connection + PrepareStatement 을 합쳐놓은 것
+		SqlSession sqlSession = myBatisConfig.getSqlSession();
+		sqlSession.delete("Board.delete", board_id);
+		sqlSession.commit(); 	// 트랜잭션 확정
+		myBatisConfig.release(sqlSession);
+		return result;
+	}
+	
+	// 1건 수정
+	public int update(Board board) {
+		int result = 0;
+		SqlSession sqlSession = myBatisConfig.getSqlSession();
+		sqlSession.update("Board.update", board);
+		sqlSession.commit(); 	// DML 은 반드시 커밋
+		myBatisConfig.release(sqlSession);
+		return result;
+	}
+	
 }
 
 

@@ -23,7 +23,7 @@ public class DetailController implements Controller{
 		
 		System.out.println("게시물이 들어있는 DTO: " + board);
 		
-		// board를 결과페이지인 View 까지 살려서 가져가려면 request 에 담고 포워딩 해야한다.
+		// board를 결과페이지인 View 까지 살려서 가져가려면 request 에 저장해서 포워딩 해야한다. (view로 가져갈 값이 있다 > 포워딩)
 		request.setAttribute("board", board);
 		
 		// request 는 죽으면 안 되므로 응답을 해선 안되고 포워딩을 해야한다.

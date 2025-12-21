@@ -37,7 +37,7 @@ $(()=>{
 <body>
 
 <div class="container">
-  <h2>Stacked form</h2>
+  <h2>글 작성 페이지</h2>
   <form class = "form1" action="/action_page.php">
 			<div class="form-group">
 				<label for="email">제목:</label> 

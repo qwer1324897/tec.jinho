@@ -29,4 +29,20 @@ mybatis 는 자동으로 java.util을 내부적으로 생성하고, resultType �
 	from board where board_id=#{board_id}
 </select>
 
+<!-- 게시물 1 건 삭제 -->
+<delete id="delete" parameterType="int">
+	delete from board where board_id=#{board_id}
+</delete>
+
+<!-- 게시물 1건 수정 -->
+<update id="update" parameterType="Board">
+	update board set title=#{title}, writer=#{writer}, content=#{content}
+	where board_id=#{board_id}
+</update>
+
 </mapper>
+
+
+
+
+
