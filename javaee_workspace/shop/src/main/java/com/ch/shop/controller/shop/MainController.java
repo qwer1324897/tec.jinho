@@ -21,7 +21,7 @@ public class MainController {
 	private TopCategoryService topCategoryService;
 	
 	// 메인 요청 처리
-	@GetMapping("/shop/main")
+	@GetMapping("/")
 	public ModelAndView getMain() {
 		// 3단계: 여러 DB 연동 업무 중, 상위 카테고리 가져오기
 		List topList = topCategoryService.getList();

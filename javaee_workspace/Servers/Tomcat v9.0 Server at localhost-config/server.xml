@@ -185,7 +185,7 @@
       
       
       
-      <Context docBase="mvcframework" path="/mvcframework" reloadable="true" source="org.eclipse.jst.jee.server:mvcframework"/><Context docBase="shop" path="/" reloadable="true" source="org.eclipse.jst.jee.server:shop"/></Host>
+      <Context docBase="mvcframework" path="/mvcframework" reloadable="true" source="org.eclipse.jst.jee.server:mvcframework"/><Context docBase="shop" path="/shop" reloadable="false" source="org.eclipse.jst.jee.server:shop"/><Context docBase="TicketHUB" path="/" reloadable="true" source="org.eclipse.jst.jee.server:TicketHUB"/></Host>
     </Engine>
   </Service>
 </Server>

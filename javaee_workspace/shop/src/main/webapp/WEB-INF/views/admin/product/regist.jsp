@@ -135,7 +135,8 @@
 	                <!-- /.card-body -->
 	
 	                <div class="card-footer">
-	                  <button type="button" class="btn btn-info">Submit</button>
+	                  <button type="button" class="btn btn-info" id="bt_regist">Submit</button>
+	                   <button type="button" class="btn btn-info" id="bt_list">상품목록</button>
 	                </div>
 	              </form>
 	            </div>
@@ -311,11 +312,17 @@
 				// contentType 속성을 주는 이유: 
 				// jQuery Ajax 는 POST 전송을 할 때 자동으로 contentType 을 application/x-www-form-urlencoded; charset=UTF-8 이렇게 변경해주는데
 				// 앞서 말했다시피 지금의 경우 이미지같은 바이너리 파일을 전송하고 있으므로, jQuery로 하여금 자동 인코딩 지정을 못하게 하는 속성이다.
+				
+				// 서버의 응답 코드가 200(성공)일 경우, 아래의 success 속성에 명시된 콜백함수가 동작함.
 				success: function(result, status, xhr) {
-					
+					// 서버측에서 응답한 데이터 형식이 순수 문자열일 경우, js의 객체 리터럴로 변환해야 . 찍고 쓸 수 있다.
+					// 따라서 문자열을 객체로 바꾸기 위해 JSON.parse() 로 처리
+					alert(result.message);
 				},
+				// 서버측에서 응답한 코드가 에러인 경우(300 이상) 아래의 error 속성에 명시된 콜백함수 호출.
 				error: function(xhr, status, err) {
-					
+					let msg = xhr.responseJSON.message || xhr.responseJSON.messege;
+				    alert(msg);
 				}
 				
 			});
@@ -351,9 +358,15 @@
 				preview(e.target.files);	// 배열 유사 객체를 가지고 호출
 			});
 			
-			$(".card-footer").click(()=>{
-				regist();
-			});
+			// 등록 버튼 이벤트
+		    $("#bt_regist").click(() => {
+		        regist();
+		    });
+
+		    // 목록 버튼 이벤트 (확실하게 이동)
+		    $("#bt_list").click(() => {
+		        location.href = "/admin/product/list";
+		    });
 		});
 	</script>
 	

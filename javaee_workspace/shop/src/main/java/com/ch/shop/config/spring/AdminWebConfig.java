@@ -40,7 +40,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 // 해당 컨트롤러에 @Controller 어노테이션이 선언되어 있으면 컴포넌트스캔으로 Bean을 자동생성
 public class AdminWebConfig extends WebMvcConfigurerAdapter{
 	
-	// 아파치 파일 업로드 컴포넌트를 Bean 으로 등록
+	// 아파치 파일 업로드 컴포넌트를 Bean 으로 등록. 이걸 하면 MultipartFile[] 으로 파일을 저장할 수 있다. 스프링의 기능.
 	@Bean
 	public CommonsMultipartResolver multipartResolver() {
 		CommonsMultipartResolver resolver = new CommonsMultipartResolver();

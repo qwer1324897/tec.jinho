@@ -17,6 +17,7 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jndi.JndiTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -25,7 +26,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 // 이 클래스에 등록될 Bean 들은 비즈니스 로직을 처리하는 Model 영역의 Bean 들이므로, 서블릿 수준의 스프링 컨테이너가 사용하는 게 아니라
 // 모든 서블릿이 접근할 수 있는 객체인 ServletContext 수준에서의 스프링 컨테이너가 이 클래스를 읽어들여 Bean 들의 인스턴스를 관리해야 한다.
 @Configuration    // xml 을 대신함
-@ComponentScan(basePackages = {"com.ch.shop.model"})
+@ComponentScan(basePackages = {"com.ch.shop.model", "com.ch.shop.util"})
+@EnableTransactionManagement
 public class RootConfig extends WebMvcConfigurerAdapter {
 
 	// DispatcherServlet 이 하위 컨트롤러부터 반환받은 View형태의 결과페이지에 대한 정보("board/list")는 완전한 jsp 경로("WEB-INF/views/board/list.jsp)가 아니므로,
