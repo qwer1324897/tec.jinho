@@ -49,7 +49,7 @@
 			<article class="hero__slide hero__slide--" 
 			         data-hero-slide 
 			         onclick="location.href='/performance/detail?id=1'"
-			         style="background-image:url('${pageContext.request.contextPath}/assets/img/banner-placeholder.svg'); cursor:pointer;">
+			         style="background-image:url('${pageContext.request.contextPath}/assets/img/Voyage.png'); cursor:pointer;">
 			  <div class="hero__content">
 			    </div>
 			</article>  
