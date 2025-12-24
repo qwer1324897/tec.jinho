@@ -31,9 +31,24 @@
     		global = "jndi/mysql"
     		type = "javax.sql.DataSource"
     	/>
-    	<!-- javax.sql.DataSource 는 javase 에서 정해놓은 인터페이스고
-    		   이 인터페이스를 Tomcat 이 구현한 커넥션풀링 구현체가 org.apache.tomcat.jdbc.pool.DataSourceFactory -->
     	
+    	<!-- 
+	    	javax.sql.DataSource 는 javase 에서 정해놓은 인터페이스고
+	    	이 인터페이스를 Tomcat 이 구현한 커넥션풀링 구현체가 org.apache.tomcat.jdbc.pool.DataSourceFactory 
+    	-->
+    	
+    	<!-- 
+    		sns 로그인 관련 보안 정보.
+    		프로젝트에 등록하지 않고 외부 설정 파일을 이용하는 이유.
+    		이 context 파일은 tomcat 서버 안에서 관리되는 파일이지 프로젝트 내에 포함되어 있지 않기 때문에
+    		만일 개발자가 프로젝트 내에 보안상 중요한 데이터를 보관할 경우, Github 에 올렸을 때 발생할 수 있는 보안사고를 방지하기 위함.
+    	 -->
+    	<Environment name="google/client/id" type="java.lang.String"
+    	value="1039260574842-l5i064f9pmf4gb7bm37q1e9hq7bjaihv.apps.googleusercontent.com" override="false"/>
+    	
+    	<Environment name="google/client/secret" type="java.lang.String"
+    	value="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" override="false"/>
+
 </Context>
 
 

@@ -23,9 +23,17 @@
 hs_err_pid*
 replay_pid*
 
-/.metadata/
-/.recommenders/
-.classpath
-.project
-.gitignore
-.settings/
+### Eclipse / IDE (workspace metadata - anywhere)
+**/.metadata/
+**/.recommenders/
+**/.settings/
+**/.classpath
+**/.project
+
+### Eclipse WTP / Servers
+**/Servers/
+
+### Build outputs (common)
+**/target/
+**/bin/
+**/build/
