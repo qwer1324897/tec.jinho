@@ -185,7 +185,7 @@
       
       
       
-      <Context docBase="shop2025" path="/" reloadable="true" source="org.eclipse.jst.jee.server:shop2025"/><Context docBase="TicketHUB" path="/TicketHUB" reloadable="true" source="org.eclipse.jst.jee.server:TicketHUB"/></Host>
+      <Context docBase="shop2025" path="/" reloadable="true" source="org.eclipse.jst.jee.server:shop2025"/></Host>
     </Engine>
   </Service>
 </Server>
