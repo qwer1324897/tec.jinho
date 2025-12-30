@@ -7,5 +7,4 @@ public interface ColorDAO {
 
 	// 모든 색상 조회
 	public List selectAll();
-
 }
