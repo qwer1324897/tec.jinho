@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page import="com.ch.shop.dto.Member" %>
     <header class="header">
         <div class="container-fluid">
             <div class="row">
@@ -31,8 +32,14 @@
                 <div class="col-lg-3">
                     <div class="header__right">
                         <div class="header__right__auth">
-                            <a href="#">Login</a>
-                            <a href="#">Register</a>
+                        	<%if(session.getAttribute("member")==null){//로그인 하지 않았다면.. %>
+	                            <a href="/member/loginform">Login</a>
+	                            <a href="/member/loginform">Register</a>
+                            <%}else{ %>
+                            	<a href="/member/loginform">MyPage</a>
+                            	<%Member member = (Member)session.getAttribute("member"); %>
+                            	<a href="#"><%=member.getName() %></a>
+                            <%} %>
                         </div>
                         <ul class="header__right__widget">
                             <li><span class="icon_search search-switch"></span></li>

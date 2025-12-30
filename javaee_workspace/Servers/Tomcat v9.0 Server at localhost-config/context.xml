@@ -48,6 +48,22 @@
     	
     	<Environment name="google/client/secret" type="java.lang.String"
     	value="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" override="false"/>
+    	
+    	<Environment name="naver/client/id" type="java.lang.String"
+    	value="yJoMgDhjUP9tyTIPoRXz" override="false"/>
+    	
+    	<Environment name="naver/client/secret" type="java.lang.String"
+    	value="DnQ3tDfJlL" override="false"/>
+    	
+    	<Environment name="kakao/client/id" type="java.lang.String"
+    	value="f4b5800a58222de9ec989182363350ea" override="false"/>
+    	
+    	<Environment name="kakao/client/secret" type="java.lang.String"
+    	value="4RYiIbIm08s9VCrVUB6g6DOD1I0J4g3u" override="false"/>    	
+    	
+    	<!-- 이메일 발송 시 사용되는 앱비밀번호는 절대 깃헙같은 곳에 노출되면 안 되기 때문에  애플리케이션 바깥에 둬야 안전하다. -->
+    	<Environment name="email/app/password" type="java.lang.String"
+    	value="lmaz ofsk ykzw kkrk" override="false"/>
 
 </Context>
 

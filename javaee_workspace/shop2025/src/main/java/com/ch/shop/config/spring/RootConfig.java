@@ -31,6 +31,12 @@ import org.springframework.web.client.RestTemplate;
 @EnableTransactionManagement
 public class RootConfig extends WebMvcConfigurerAdapter {
 
+	@Bean
+	public JndiTemplate jndiTemplate() {
+		return new JndiTemplate();
+	}	// context.xml 등에 명시된 외부 자원을 JNDI 방식으로 읽어들일 수 있는 스프링의 객체.(중요)
+
+	
 	// DispatcherServlet 이 하위 컨트롤러부터 반환받은 View형태의 결과페이지에 대한 정보("board/list")는 완전한 jsp 경로("WEB-INF/views/board/list.jsp)가 아니므로,
 	// 이를 해석할 수 있는 ViewResolver 에게 맡겨야 한다. 이 ViewResolver 중 접두어와 접미어를 이해하는 ViewResolver 를 InternalResourceViewResolver 라고 한다.
 	// 개발자는 이 객체에게 접두어와 접미어를 사전에 등록해 놓아야 한다.(지금의 경우, /WEB-INF/views 와 .jsp)
@@ -122,7 +128,12 @@ public class RootConfig extends WebMvcConfigurerAdapter {
 		return new SqlSessionTemplate(sqlSessionFactory);
 	}
 	
-	// 스프링 프레임웤의 개발원리 중 하나인 DI 를 구현하려면, 개발자는 사용할 객체들을 미리 Bean 으로 등록해놓아야 한다.
 	
+	// 5) 메일에 사용 될 비밀번호를 가진 빈 등록
+	@Bean
+	public String emailPassword(JndiTemplate jndiTemplate) throws Exception{
+		return (String) jndiTemplate.lookup("java:comp/env/email/app/password");
+	}
 
+	// 스프링 프레임웤의 개발원리 중 하나인 DI 를 구현하려면, 개발자는 사용할 객체들을 미리 Bean 으로 등록해놓아야 한다.
 }

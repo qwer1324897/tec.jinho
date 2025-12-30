@@ -146,7 +146,7 @@
 				success: function (result, status, xhr) {
 					console.log("서버로부터 받은 인증 요청 url 은 ", result);
 					alert(result);
-					location.href=result;
+					location.href=result;	// << 마지막은 동기 방식
 				}
 			});
 		}

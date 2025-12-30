@@ -22,12 +22,10 @@
 	 <listener>
 	 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	 </listener>
-	
-
-
+	 
 
 	<!-- 
-		MVC 에서 모델  영역은 모든 요청 서블릿들 간 공유가 되어야 하는 공통기능이므로, 특정 서블릿의 수준으로 등록하면 ㄷ안ㄷ
+		MVC 에서 모델  영역은 모든 요청 서블릿들 간 공유가 되어야 하는 공통기능이므로, 특정 서블릿의 수준으로 등록하면 안 된다.
 		// 왜 why 
 		// 예) 관리자용 서블릿에 등록해버리면 쇼핑몰 유저가 톰캣 가동과 동시에 먼저 접근하게 될 경우 모델 객체들이 아직 인스턴스 생성 이전 시점이므로, 모델 객체들을 사용할 수 없게 된다.
 		
@@ -36,7 +34,6 @@
 					JavaEE에서 서버 가동과 동시에 생성되어, 서버 종료시까지 생명력을 유지하는 객체인
 					즉, 애플리케이션의 전역 정보를 가진 객체인 ServletContext에게 맡기면 된다.
 					참고) ServletContext의 JSP의 내장객체명은? application
-	
 	 -->
 
 	 <!--
